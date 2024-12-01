@@ -20,6 +20,9 @@ class Cpenv < Formula
   def install
     # Rename the binary to match your project name
     bin.install "cpenv-darwin-#{Hardware::CPU.arch}" => "cpenv"
+
+    # Ensure the binary is executable (just in case)
+    chmod 0755, "#{bin}/cpenv"
   end
 
   test do
