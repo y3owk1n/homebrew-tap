@@ -1,4 +1,4 @@
-class Myproject < Formula
+class Cpenv < Formula
   desc "A CLI for copy and paste your local .env to right projects faster"
   homepage "https://github.com/y3owk1n/cpenv"
   
