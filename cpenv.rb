@@ -8,13 +8,13 @@ class Cpenv < Formula
   # For macOS Intel (x86_64)
   if OS.mac? && Hardware::CPU.intel?
     url "https://github.com/y3owk1n/cpenv/releases/download/v#{version}/cpenv-darwin-x64"
-    sha256 "3edc67111bbb085e04437d034f520a8c6fb58f441b4e50825c680291e64783ec"
+    sha256 "f8c2d9b7e9c6fda929cb0b9fba0da9a028d1d3f740213d3d79ae757177642087"
   end
   
   # For macOS Apple Silicon (arm64)
   if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/y3owk1n/cpenv/releases/download/v#{version}/cpenv-darwin-arm64"
-    sha256 "a179192fec7658824cf30acfe25be05de7f0a8a628342d5aec9ce94701384e3f"
+    sha256 "844dda394d59eb32854c3c677c68868a1105c9fc32388a650807ccc9c51a2f82"
   end
 
   def install
