@@ -3,7 +3,7 @@ class Myproject < Formula
   homepage "https://github.com/y3owk1n/cpenv"
   
   # You'll replace these in your actual implementation
-  version "2.0.0"
+  version "1.2.0"
   
   # For macOS Intel (x86_64)
   if OS.mac? && Hardware::CPU.intel?
