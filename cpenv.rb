@@ -3,18 +3,18 @@ class Cpenv < Formula
   homepage "https://github.com/y3owk1n/cpenv"
   
   # You'll replace these in your actual implementation
-  version "1.11.1"
+  version "1.11.2"
   
   # For macOS Intel (x86_64)
   if OS.mac? && Hardware::CPU.intel?
     url "https://github.com/y3owk1n/cpenv/releases/download/v#{version}/cpenv-darwin-amd64"
-    sha256 "a3f443073f71fe059db680e7336a537fe00db64a506ddd996b3e8f33e1fda184"
+    sha256 "b4ee7f012f141affa4baf38b8c28351cc64fc3a6a412227b98536bfe48b83e76"
   end
   
   # For macOS Apple Silicon (arm64)
   if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/y3owk1n/cpenv/releases/download/v#{version}/cpenv-darwin-arm64"
-    sha256 "93b2e12b7cd457b55b7a0426993f86be2783b66e5593b36a79b66433126bbac9"
+    sha256 "1a118784e13eabd4f03405ebb6b8494721638b7c866ea0e2b7f5701e546ac4c7"
   end
 
   def install
