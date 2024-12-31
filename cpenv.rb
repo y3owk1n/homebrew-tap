@@ -1,20 +1,20 @@
 class Cpenv < Formula
   desc "A CLI for copy and paste your local .env to right projects faster"
   homepage "https://github.com/y3owk1n/cpenv"
-  
+
   # You'll replace these in your actual implementation
-  version "1.14.1"
-  
+  version "1.15.0"
+
   # For macOS Intel (x86_64)
   if OS.mac? && Hardware::CPU.intel?
     url "https://github.com/y3owk1n/cpenv/releases/download/v#{version}/cpenv-darwin-amd64"
-    sha256 "eb44757898218840ca4bfb4b9043bd54a19fa47777e41c941647be837c141d9c"
+    sha256 "c62d950d0b64524adcb8312685085d81c33c11f3bd211cb9fbe6eb957b040368"
   end
-  
+
   # For macOS Apple Silicon (arm64)
   if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/y3owk1n/cpenv/releases/download/v#{version}/cpenv-darwin-arm64"
-    sha256 "62d41ab40fceda2dcd9e1360c4434413fe8ae790a8ede1a2e69faf1c527cd63e"
+    sha256 "b5b47aa572703215c78f72af4f2897578156f3819a0f5bdc6aceacd80073bc12"
   end
 
   def install
