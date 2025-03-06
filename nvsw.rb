@@ -6,13 +6,13 @@ class Nvsw < Formula
   # For macOS Intel (x86_64)
   if OS.mac? && Hardware::CPU.intel?
     url "https://github.com/y3owk1n/nvsw/releases/download/v#{version}/nvsw-darwin-amd64"
-    sha256 "56390327dfd49be6b8a064e2f6ba4243f05257243ce2dd69165a3914cd629a71"
+    sha256 "9db191aaf7b35ea08c55f510937d7c3c2d2b3f74f9b7ec07eb167fb14b6c8de8"
   end
 
   # For macOS Apple Silicon (arm64)
   if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/y3owk1n/nvsw/releases/download/v#{version}/nvsw-darwin-arm64"
-    sha256 "2bfd21f7454eb7656b0644ed33c3bbfda5e60937ca2cfb4bbb798be6fc5dfa58"
+    sha256 "c7590d29e86b08045783ccbb41b1ceb4728706505e0718d265761b304a43a349"
   end
 
   def install
