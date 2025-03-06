@@ -6,13 +6,13 @@ class Nvs < Formula
   # For macOS Intel (x86_64)
   if OS.mac? && Hardware::CPU.intel?
     url "https://github.com/y3owk1n/nvs/releases/download/v#{version}/nvs-darwin-amd64"
-    sha256 "9db191aaf7b35ea08c55f510937d7c3c2d2b3f74f9b7ec07eb167fb14b6c8de8"
+    sha256 "3cda79fac29c8759532d090cbf7d298f43c6abeb7cde7bd6e71c5eb26d9e8ea9"
   end
 
   # For macOS Apple Silicon (arm64)
   if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/y3owk1n/nvs/releases/download/v#{version}/nvs-darwin-arm64"
-    sha256 "c7590d29e86b08045783ccbb41b1ceb4728706505e0718d265761b304a43a349"
+    sha256 "2a27af42a6ae406d4b2f8008c0ee5ad6ae5ac32e7bc8efed0069aaa57ddaefa5"
   end
 
   def install
