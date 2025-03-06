@@ -1,7 +1,7 @@
 class Nvsw < Formula
   desc "Neovim version switcher"
   homepage "https://github.com/y3owk1n/nvsw"  # Replace with your actual URL
-  version "1.0.0"
+  version "1.0.1"
 
   # For macOS Intel (x86_64)
   if OS.mac? && Hardware::CPU.intel?
