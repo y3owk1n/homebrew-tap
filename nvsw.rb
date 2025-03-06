@@ -31,6 +31,6 @@ class Nvsw < Formula
 
   test do
     # A simple test to ensure that nvsw returns its current version.
-    system "#{bin}/nvsw", "current"
+    system "#{bin}/nvsw", "version"
   end
 end
