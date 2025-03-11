@@ -1,18 +1,18 @@
 class Nvs < Formula
 	desc "Neovim version switcher"
 	homepage "https://github.com/y3owk1n/nvs"  # Replace with your actual URL
-	version "1.8.0"
+	version "1.8.1"
 
 	# For macOS Intel (x86_64)
 	if OS.mac? && Hardware::CPU.intel?
 		url "https://github.com/y3owk1n/nvs/releases/download/v#{version}/nvs-darwin-amd64"
-		sha256 "450ed81b5528330e39085586e576727ddda6390d1ca2495727846eb797a0cbfb"
+		sha256 "1af51b7a9d39415c4f6221c0ed36b02ec46ac27879c3155f027d612e47bcd4fc"
 	end
 
 	# For macOS Apple Silicon (arm64)
 	if OS.mac? && Hardware::CPU.arm?
 		url "https://github.com/y3owk1n/nvs/releases/download/v#{version}/nvs-darwin-arm64"
-		sha256 "40c16a5c5f0dca3e21888dc2efd18c29fc17029f62e27787b1383d146827e04d"
+		sha256 "3d9fbd44c3ee0a7e41f61993ffd77c34bc631994905895b4d1413143f8be17d6"
 	end
 
 	def install
