@@ -12,7 +12,7 @@ class Govim < Formula
 	# For macOS Apple Silicon (arm64)
 	if OS.mac? && Hardware::CPU.arm?
 		url "https://github.com/y3owk1n/govim/releases/download/v#{version}/govim-darwin-arm64"
-		sha256 "sha256:690c3f004b3cd22538c5c40203654ebd060d38d08cb6abe2ac64752d761e7b60"
+		sha256 "690c3f004b3cd22538c5c40203654ebd060d38d08cb6abe2ac64752d761e7b60"
 	end
 
 	def install
