@@ -1,18 +1,18 @@
 class Govim < Formula
 	desc "Govim - keyboard driven navigation for MacOS"
 	homepage "https://github.com/y3owk1n/govim"
-	version "1.1.0"
+	version "1.1.1"
 
 	# For macOS Intel (x86_64)
 	if OS.mac? && Hardware::CPU.intel?
 		url "https://github.com/y3owk1n/govim/releases/download/v#{version}/govim-darwin-amd64"
-		sha256 "712e8d813847d2c9ccb282e1215f53c3be37e11c5b69325c7517eecf8b8fe415"
+		sha256 "1f10b8b9669f250c7dc341d53a519c7789bbc9ffc9f87b0039718e12de1d4a96"
 	end
 
 	# For macOS Apple Silicon (arm64)
 	if OS.mac? && Hardware::CPU.arm?
 		url "https://github.com/y3owk1n/govim/releases/download/v#{version}/govim-darwin-arm64"
-		sha256 "30531ab12c1b91e69075946b9f9ae9988ce1c1af4eeb2b47eb70851600c1565b"
+		sha256 "0de0425aa7bff592f7e9967c0ddd2a9ab13a03aa261ed4a7177dc5e62e1ec433"
 	end
 
 	def install
