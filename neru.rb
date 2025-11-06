@@ -14,32 +14,27 @@ class Neru < Formula
   end
 
   def install
-    arch = Hardware::CPU.arm? ? "arm64" : "amd64"
-    base_dir = "neru-darwin-#{arch}"
-
-    # Install CLI binary
-    bin.install "#{base_dir}/bin/neru"
-
-    # Install the app bundle inside prefix
-    prefix.install "#{base_dir}/Neru.app"
+    # Flat layout: just bin/neru and Neru.app in archive
+    bin.install "bin/neru"
+    prefix.install "Neru.app"
 
     # Generate completions
     generate_completions_from_executable(bin/"neru", "completion")
 
-    # Create /Applications symlink
+    # Link the .app automatically to /Applications
     app_path = prefix/"Neru.app"
     system "ln", "-sf", app_path, "/Applications/Neru.app"
   end
 
   def post_install
-    # Remove macOS quarantine flag
+    # Remove quarantine flags (non-fatal if not present)
     system "xattr", "-d", "com.apple.quarantine", prefix/"Neru.app" rescue nil
   end
 
   def caveats
     <<~EOS
-      Neru.app has been installed and linked to /Applications.
-      If you prefer not to have the symlink, you can remove it with:
+      Neru.app has been linked to /Applications.
+      If you ever want to remove it manually, run:
         rm /Applications/Neru.app
     EOS
   end
