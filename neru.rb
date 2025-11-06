@@ -23,7 +23,13 @@ class Neru < Formula
 
     # Link the .app automatically to /Applications
     app_path = prefix/"Neru.app"
-    system "ln", "-sf", app_path, "/Applications/Neru.app"
+    target_dir = if File.writable?("/Applications")
+      Pathname.new("/Applications")
+    else
+      Pathname.new("#{Dir.home}/Applications").tap(&:mkpath)
+    end
+  
+    system "ln", "-sf", app_path, target_dir/"Neru.app"
   end
 
   def post_install
