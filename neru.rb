@@ -1,51 +1,26 @@
-class Neru < Formula
-  desc "Keyboard driven navigation for macOS"
-  homepage "https://github.com/y3owk1n/neru"
+cask "neru" do
   version "1.5.0"
 
-  on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-amd64.zip"
-      sha256 "c91726bab30aaa853fc727032c4f284b54b847a9043bbb4001a966e2e5dae54d"
-    else
-      url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-arm64.zip"
-      sha256 "96d1e4139a9fac4d141cd78771af8fe0b664d89377d20815953ffe7e61b39a62"
-    end
+  if Hardware::CPU.intel?
+    url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-amd64.zip"
+    sha256 "c91726bab30aaa853fc727032c4f284b54b847a9043bbb4001a966e2e5dae54d"
+  else
+    url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-arm64.zip"
+    sha256 "96d1e4139a9fac4d141cd78771af8fe0b664d89377d20815953ffe7e61b39a62"
   end
 
-  def install
-    # Flat layout: just bin/neru and Neru.app in archive
-    bin.install "bin/neru"
-    prefix.install "Neru.app"
+  name "Neru"
+  desc "Keyboard driven navigation for macOS"
+  homepage "https://github.com/y3owk1n/neru"
 
-    # Generate completions
-    generate_completions_from_executable(bin/"neru", "completion")
-
-    # Link the .app automatically to /Applications
-    app_path = prefix/"Neru.app"
-    target_dir = if File.writable?("/Applications")
-      Pathname.new("/Applications")
-    else
-      Pathname.new("#{Dir.home}/Applications").tap(&:mkpath)
-    end
-  
-    system "ln", "-sf", app_path, target_dir/"Neru.app"
+  postflight do
+    system "xattr", "-d", "com.apple.quarantine", "#{staged_path}/Neru.app"
+    system "xattr", "-d", "com.apple.quarantine", "#{staged_path}/neru"
   end
 
-  def post_install
-    # Remove quarantine flags (non-fatal if not present)
-    system "xattr", "-d", "com.apple.quarantine", prefix/"Neru.app" rescue nil
-  end
+  app "Neru.app"
+  binary "neru"
 
-  def caveats
-    <<~EOS
-      Neru.app has been linked to /Applications.
-      If you ever want to remove it manually, run:
-        rm /Applications/Neru.app
-    EOS
-  end
-
-  test do
-    system "#{bin}/neru", "--version"
-  end
+  # Generate shell completions from Cobra CLI
+  generate_completions_from_executable(bin/"neru", "completion")
 end
