@@ -21,7 +21,7 @@ class Nvs < Formula
 		chmod 0755, "#{bin}/nvs"
 
     # Generate and install shell completions
-		generate_completions_from_executable(bin/"nvs", "completion")
+		generate_completions_from_executable(bin/"nvs", "completion", shells: [:bash, :zsh, :fish])
 	end
 
 	def caveats
