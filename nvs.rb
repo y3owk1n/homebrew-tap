@@ -1,24 +1,27 @@
 class Nvs < Formula
 	desc "Neovim version switcher"
 	homepage "https://github.com/y3owk1n/nvs"  # Replace with your actual URL
-	version "1.10.7"
+	version "1.11.0"
 
 	# For macOS Intel (x86_64)
 	if OS.mac? && Hardware::CPU.intel?
 		url "https://github.com/y3owk1n/nvs/releases/download/v#{version}/nvs-darwin-amd64"
-		sha256 "8c612595b4c8ebd52fab0d9f8b1f77f354675ecef19545538bca3af9c01b1d78"
+		sha256 "6249632d1262413d69709de6c6f7edf5642b789eb4de45f0b46d6e05ca69b3b7"
 	end
 
 	# For macOS Apple Silicon (arm64)
 	if OS.mac? && Hardware::CPU.arm?
 		url "https://github.com/y3owk1n/nvs/releases/download/v#{version}/nvs-darwin-arm64"
-		sha256 "a86bf40f35c356efd40211c416b28b373551c41e21b9c75826439039e7e8279d"
+		sha256 "1bb13fb7dd01fbb66ff70b1c4bd1e0f93003e5a6b83883579963fa16b7512ed7"
 	end
 
 	def install
 		# Install the downloaded binary and rename it to "nvs"
 		bin.install "nvs-darwin-#{Hardware::CPU.arch}" => "nvs"
 		chmod 0755, "#{bin}/nvs"
+
+    # Generate and install shell completions
+		generate_completions_from_executable(bin/"nvs", "completion")
 	end
 
 	def caveats
