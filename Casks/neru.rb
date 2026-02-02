@@ -1,12 +1,12 @@
 cask "neru" do
-  version "1.16.0"
+  version "1.17.0"
 
   if Hardware::CPU.intel?
     url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-amd64.zip"
-    sha256 "e954aa27c1409a8e96dbbbad4d877d3190ba3415ee64c15c70102c2f8a486add"
+    sha256 "20570bcfd6dc2464ee407244578408e3c7f597d15000f00400685c281c33cabe"
   else
     url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-arm64.zip"
-    sha256 "ad0eec91ee222c174bde3dfa87dbc8c29b79c7c9970f55f4fef3c2de73c008d1"
+    sha256 "bc10c6736ef6ee73b0b44747be16fb0f17a6fb9f06d175e34cb309100e5afe65"
   end
 
   name "Neru"
