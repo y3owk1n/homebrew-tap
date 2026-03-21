@@ -21,7 +21,7 @@ cask "neru" do
   depends_on macos: ">= :big_sur"
 
   app "Neru.app"
-  binary "bin/neru"
+  binary "#{appdir}/Neru.app/Contents/MacOS/Neru", target: "neru"
 
   postflight do
     # Remove quarantine attributes
