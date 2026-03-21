@@ -24,19 +24,22 @@ cask "neru" do
   binary "#{appdir}/Neru.app/Contents/MacOS/Neru", target: "neru"
 
   postflight do
-    # Remove quarantine attributes
-    system "xattr", "-d", "com.apple.quarantine", "#{appdir}/Neru.app"
-    system "xattr", "-d", "com.apple.quarantine", "#{HOMEBREW_PREFIX}/bin/neru"
+    # Remove quarantine attributes (ignore errors if attribute doesn't exist)
+    system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
 
-    # Shell completions - use the installed binary location
+    # Wait for symlink to be available
     neru_binary = "#{HOMEBREW_PREFIX}/bin/neru"
-    zsh_completion_dir = "#{HOMEBREW_PREFIX}/share/zsh/site-functions"
-    bash_completion_dir = "#{HOMEBREW_PREFIX}/etc/bash_completion.d"
-    fish_completion_dir = "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d"
+    sleep 1 unless File.exist?(neru_binary)
 
-    system "sh", "-c", "#{neru_binary} completion zsh > #{zsh_completion_dir}/_neru" if Dir.exist?(zsh_completion_dir)
-    system "sh", "-c", "#{neru_binary} completion bash > #{bash_completion_dir}/neru" if Dir.exist?(bash_completion_dir)
-    system "sh", "-c", "#{neru_binary} completion fish > #{fish_completion_dir}/neru.fish" if Dir.exist?(fish_completion_dir)
+    if File.exist?(neru_binary)
+      zsh_completion_dir = "#{HOMEBREW_PREFIX}/share/zsh/site-functions"
+      bash_completion_dir = "#{HOMEBREW_PREFIX}/etc/bash_completion.d"
+      fish_completion_dir = "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d"
+
+      system "sh", "-c", "\"#{neru_binary}\" completion zsh > \"#{zsh_completion_dir}/_neru\""   if Dir.exist?(zsh_completion_dir)
+      system "sh", "-c", "\"#{neru_binary}\" completion bash > \"#{bash_completion_dir}/neru\""  if Dir.exist?(bash_completion_dir)
+      system "sh", "-c", "\"#{neru_binary}\" completion fish > \"#{fish_completion_dir}/neru.fish\"" if Dir.exist?(fish_completion_dir)
+    end
   end
 
   uninstall_postflight do
