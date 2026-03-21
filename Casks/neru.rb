@@ -1,10 +1,10 @@
 cask "neru" do
   arch arm: "arm64", intel: "amd64"
 
-  version "1.28.0"
+  version "1.29.0"
 
-  sha256 arm:   "417c46880def8b9066b15d3df201382e3071da56cef944bb8e87f5c098dcc833",
-         intel: "19dad7cdccd193362e0e66c9bf426a0c8910f9809b561fb9330f6b2e2bfc10ff"
+  sha256 arm:   "ce322cd9ad7874a6f75a7537f2798ea970ca691fb186dbd991787773473aa70c",
+         intel: "1a7cbd2830edb5ce57d217b5669e9ed0ae8f84e3bf2f7874e58a6379701cd8a4"
 
   url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-#{arch}.zip",
       verified: "github.com/y3owk1n/neru/"
@@ -21,7 +21,7 @@ cask "neru" do
   depends_on macos: ">= :big_sur"
 
   app "Neru.app"
-  binary "#{appdir}/Neru.app/Contents/MacOS/Neru", target: "neru"
+  binary "#{appdir}/Neru.app/Contents/MacOS/neru"
 
   postflight do
     # Remove quarantine attributes (ignore errors if attribute doesn't exist)
