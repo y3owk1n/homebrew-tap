@@ -1,10 +1,10 @@
 cask "neru" do
   arch arm: "arm64", intel: "amd64"
 
-  version "1.35.0"
+  version "1.36.0"
 
-  sha256 arm:   "12c96371360066e93e5d1f3ccee5a7e591ee758bdfa17c21aac54c4f541056b6",
-         intel: "ff28241d33855127822b916f4a45afddcaa21f2cdf543a084864e578d37fbe52"
+  sha256 arm:   "567a4ce1bd42ef38e314fce105cf36a0ce5d79d916060e1d36e61a3dd728b0c6",
+         intel: "0e090c9e50b4524b3a419c5a0a8662b54724ce647ade531e662902644b749ba8"
 
   url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-#{arch}.zip",
       verified: "github.com/y3owk1n/neru/"
