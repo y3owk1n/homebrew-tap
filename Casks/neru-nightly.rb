@@ -23,12 +23,13 @@ cask "neru-nightly" do
   conflicts_with cask: "neru"
 
   app "Neru.app"
-  binary "#{appdir}/Neru.app/Contents/MacOS/neru"
+  binary "bin/neru"
 
   postflight do
     system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
-    Dir["#{staged_path}/share/man/man1/*.1"].each { |man| manpage man }
   end
+
+  Dir["#{staged_path}/share/man/man1/*.1"].each { |man| manpage man }
 
   zap rmdir: "~/.config/neru"
 end
