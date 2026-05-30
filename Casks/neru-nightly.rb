@@ -25,10 +25,9 @@ cask "neru-nightly" do
   app "Neru.app"
   binary "#{appdir}/Neru.app/Contents/MacOS/neru"
 
-  Dir["#{staged_path}/share/man/man1/*.1"].each { |man| manpage man }
-
   postflight do
     system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
+    Dir["#{staged_path}/share/man/man1/*.1"].each { |man| manpage man }
   end
 
   zap rmdir: "~/.config/neru"
