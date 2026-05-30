@@ -27,9 +27,17 @@ cask "neru-nightly" do
 
   postflight do
     system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
+    system "mkdir", "-p", "/opt/homebrew/share/man/man1"
+    Dir["#{staged_path}/share/man/man1/*.1"].each do |man|
+      system "ln", "-sf", man, "/opt/homebrew/share/man/man1/#{File.basename(man)}"
+    end
   end
 
-  Dir["#{staged_path}/share/man/man1/*.1"].each { |man| manpage man }
+  uninstall_postflight do
+    Dir["/opt/homebrew/share/man/man1/neru*.1"].each do |man|
+      system "rm", "-f", man
+    end
+  end
 
   zap rmdir: "~/.config/neru"
 end
