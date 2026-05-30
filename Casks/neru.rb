@@ -1,10 +1,10 @@
 cask "neru" do
   arch arm: "arm64", intel: "amd64"
 
-  version "1.41.0"
+  version "1.42.0"
 
-  sha256 arm:   "49a0d283d2e127e2b4937bbac8d38ae2edbc44c83c743f821a5c35fc130c3116",
-         intel: "4a195b545fd8e3f2142c62b13b4d90b973a8189f7c852cea8f865111831d0dec"
+  sha256 arm:   "61e941b7e5131493961c20130450a1095f747bbb05a6e349e89b67e78843d294",
+         intel: "29da2bae312f8803dd9bf4d232a0585d92eb6a415438a639a5c965f48335b9ba"
 
   url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-#{arch}.zip",
       verified: "github.com/y3owk1n/neru/"
@@ -20,12 +20,24 @@ cask "neru" do
 
   depends_on macos: ">= :big_sur"
 
+  conflicts_with cask: "neru-nightly"
+
   app "Neru.app"
-  binary "#{appdir}/Neru.app/Contents/MacOS/neru"
+  binary "bin/neru"
 
   postflight do
     # Remove quarantine attributes (ignore errors if attribute doesn't exist)
     system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
+    system "mkdir", "-p", "/opt/homebrew/share/man/man1"
+    Dir["#{staged_path}/share/man/man1/*.1"].each do |man|
+      system "ln", "-sf", man, "/opt/homebrew/share/man/man1/#{File.basename(man)}"
+    end
+  end
+
+  uninstall_postflight do
+    Dir["/opt/homebrew/share/man/man1/neru*.1"].each do |man|
+      system "rm", "-f", man
+    end
   end
 
   zap rmdir: "~/.config/neru"
