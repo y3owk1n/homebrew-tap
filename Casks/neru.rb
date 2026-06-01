@@ -28,6 +28,7 @@ cask "neru" do
   postflight do
     # Remove quarantine attributes (ignore errors if attribute doesn't exist)
     system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
+    system "xattr", "-d", "com.apple.quarantine", "#{staged_path}/bin/neru"
     system "mkdir", "-p", "/opt/homebrew/share/man/man1"
     Dir["#{staged_path}/share/man/man1/*.1"].each do |man|
       system "ln", "-sf", man, "/opt/homebrew/share/man/man1/#{File.basename(man)}"
