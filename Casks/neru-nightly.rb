@@ -18,7 +18,7 @@ cask "neru-nightly" do
     end
   end
 
-  depends_on macos: ">= :sonoma" # macos 14
+  depends_on macos: :sonoma # macos 14
 
   conflicts_with cask: "neru"
 

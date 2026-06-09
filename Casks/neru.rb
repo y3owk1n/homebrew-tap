@@ -18,7 +18,7 @@ cask "neru" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sonoma" # macos 14
+  depends_on macos: :sonoma # macos 14
 
   conflicts_with cask: "neru-nightly"
 

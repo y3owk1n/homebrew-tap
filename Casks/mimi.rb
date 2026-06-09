@@ -18,7 +18,7 @@ cask "mimi" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sonoma" # macos 14
+  depends_on macos: :sonoma # macos 14
 
   app "Mimi.app"
   binary "bin/mimi"
