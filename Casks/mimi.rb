@@ -1,16 +1,16 @@
 cask "mimi" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.7.0"
+  version "0.8.0"
 
-  sha256 arm:   "da4a327fadc0c527272fb15fed9518ca8e355d2e9ebc250f85aa1bfc7e3200fb",
-         intel: "2810b5c9a3c20e6517ed4336f3b5a0314541a69274febdfe40313cad72884b62"
+  sha256 arm:   "15446b1b60a04f33e6419b89f55e44ae4e88e666e0870fafe5d86a66b418b756",
+         intel: "a55e3b72c7d5e57fe831fdac73b4737720d5eaeaaa6d0cbfd1d9403fe7966adf"
 
   url "https://github.com/y3owk1n/mimi/releases/download/v#{version}/mimi-darwin-#{arch}.zip",
       verified: "github.com/y3owk1n/mimi/"
 
   name "Mimi"
-  desc "A macOS event daemon that runs your shell commands when things happen."
+  desc "macOS windows and spaces. From the terminal."
   homepage "https://github.com/y3owk1n/mimi"
 
   livecheck do
