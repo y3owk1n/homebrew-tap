@@ -53,7 +53,8 @@ cask "mimi" do
 
   zap trash: [
     "~/.config/mimi",
-    "~/.local/share/mimi",
     "~/Library/LaunchAgents/com.y3owk1n.mimi.plist",
+    "/tmp/mimi.log",
+    "/tmp/mimi.err.log",
   ]
 end

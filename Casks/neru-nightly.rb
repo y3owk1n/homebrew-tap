@@ -55,5 +55,8 @@ cask "neru-nightly" do
   zap trash: [
     "~/.config/neru",
     "~/Library/LaunchAgents/com.y3owk1n.neru.plist",
+    "~/Library/Logs/neru",
+    "/tmp/neru.log",
+    "/tmp/neru.err.log",
   ]
 end
