@@ -49,7 +49,11 @@ cask "neru-nightly" do
     end
   end
 
-  uninstall quit: "com.y3owk1n.neru"
+  uninstall launchctl: "com.y3owk1n.neru",
+            quit:       "com.y3owk1n.neru"
 
-  zap rmdir: "~/.config/neru"
+  zap trash: [
+    "~/.config/neru",
+    "~/Library/LaunchAgents/com.y3owk1n.neru.plist",
+  ]
 end
