@@ -29,9 +29,8 @@ cask "mimi" do
 
   generate_completions_from_executable(
     "#{appdir}/Mimi.app/Contents/MacOS/mimi",
-    "completion",
     shells: [:bash, :zsh, :fish],
-    shell_parameter_format: :arg,
+    shell_parameter_format: :cobra,
   )
 
   postflight do
