@@ -29,6 +29,12 @@ cask "neru" do
   app "Neru.app"
   binary "#{appdir}/Neru.app/Contents/MacOS/neru"
 
+  generate_completions_from_executable(
+    "#{appdir}/Neru.app/Contents/MacOS/neru",
+    shells: [:bash, :zsh, :fish],
+    shell_parameter_format: :cobra,
+  )
+
   postflight do
     system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
     system "mkdir", "-p", "/opt/homebrew/share/man/man1"
