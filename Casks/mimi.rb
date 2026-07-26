@@ -21,7 +21,14 @@ cask "mimi" do
   depends_on macos: :sonoma # macos 14
 
   app "Mimi.app"
-  binary "bin/mimi"
+  binary "#{appdir}/Mimi.app/Contents/MacOS/mimi"
+
+  generate_completions_from_executable(
+    "#{appdir}/Mimi.app/Contents/MacOS/mimi",
+    "completion",
+    shells: [:bash, :zsh, :fish],
+    shell_parameter_format: :arg,
+  )
 
   postflight do
     # Remove quarantine attributes (ignore errors if attribute doesn't exist)
@@ -38,6 +45,8 @@ cask "mimi" do
       system "rm", "-f", man
     end
   end
+
+  uninstall quit: "com.y3owk1n.mimi"
 
   zap rmdir: ["~/.config/mimi", "~/.local/share/mimi"]
 end
