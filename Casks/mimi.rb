@@ -48,7 +48,12 @@ cask "mimi" do
     end
   end
 
-  uninstall quit: "com.y3owk1n.mimi"
+  uninstall launchctl: "com.y3owk1n.mimi",
+            quit:       "com.y3owk1n.mimi"
 
-  zap rmdir: ["~/.config/mimi", "~/.local/share/mimi"]
+  zap trash: [
+    "~/.config/mimi",
+    "~/.local/share/mimi",
+    "~/Library/LaunchAgents/com.y3owk1n.mimi.plist",
+  ]
 end
