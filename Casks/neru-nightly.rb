@@ -22,12 +22,21 @@ cask "neru-nightly" do
 
   conflicts_with cask: "neru"
 
+  preflight do
+    system "xattr", "-rd", "com.apple.quarantine", "#{staged_path}/Neru.app"
+  end
+
   app "Neru.app"
-  binary "bin/neru"
+  binary "#{appdir}/Neru.app/Contents/MacOS/neru"
+
+  generate_completions_from_executable(
+    "#{appdir}/Neru.app/Contents/MacOS/neru",
+    shells: [:bash, :zsh, :fish],
+    shell_parameter_format: :cobra,
+  )
 
   postflight do
     system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
-    system "xattr", "-d", "com.apple.quarantine", "#{staged_path}/bin/neru"
     system "mkdir", "-p", "/opt/homebrew/share/man/man1"
     Dir["#{staged_path}/share/man/man1/*.1"].each do |man|
       system "ln", "-sf", man, "/opt/homebrew/share/man/man1/#{File.basename(man)}"
@@ -39,6 +48,8 @@ cask "neru-nightly" do
       system "rm", "-f", man
     end
   end
+
+  uninstall quit: "com.y3owk1n.neru"
 
   zap rmdir: "~/.config/neru"
 end
