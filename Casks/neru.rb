@@ -1,10 +1,10 @@
 cask "neru" do
   arch arm: "arm64", intel: "amd64"
 
-  version "1.50.0"
+  version "1.51.0"
 
-  sha256 arm:   "9754e6f83c4ee49f93376075da2268f03c3d7c862f34cd0e213a93b824fd7132",
-         intel: "b3d51f32d8ec4a19cce56d95eedbe0d0f1e99d90814ed0fd5aee7a19101344af"
+  sha256 arm:   "de43c81dccd02ce95144df3fb2498a695b4ce9223287adef6993d2ef314b1420",
+         intel: "1970d4d35b52c75a0151bcd33e148291c1e5217c13e3a828a3a8bc88dc42b53c"
 
   url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-#{arch}.zip",
       verified: "github.com/y3owk1n/neru/"
@@ -54,6 +54,7 @@ cask "neru" do
 
   zap trash: [
     "~/.config/neru",
+    "~/Library/Application Support/neru",
     "~/Library/LaunchAgents/com.y3owk1n.neru.plist",
     "~/Library/Logs/neru",
     "/tmp/neru.log",
