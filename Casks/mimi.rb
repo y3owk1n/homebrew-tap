@@ -1,10 +1,10 @@
 cask "mimi" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.9.2"
+  version "0.10.0"
 
-  sha256 arm:   "dfe790d61b644d7adafa7dbc4ee359e85c198605a2da3e03a50e54c9b4222211",
-         intel: "8e4cbc35f68851314a7ed6cdd301418f756c0896290cf18757b04e5becc72ca3"
+  sha256 arm:   "3dc0f740cc38a5bf7966435bb3da174274eb2db89ad654c8fbc9cc164e61e234",
+         intel: "08d2234a37ca52ce732fce3d4b95cf59be2a623e702dc3420c17799c1b2c1136"
 
   url "https://github.com/y3owk1n/mimi/releases/download/v#{version}/mimi-darwin-#{arch}.zip",
       verified: "github.com/y3owk1n/mimi/"
@@ -53,7 +53,9 @@ cask "mimi" do
 
   zap trash: [
     "~/.config/mimi",
+    "~/.local/share/mimi",
     "~/Library/LaunchAgents/com.y3owk1n.mimi.plist",
+    "~/Library/Preferences/com.y3owk1n.mimi.plist",
     "/tmp/mimi.log",
     "/tmp/mimi.err.log",
   ]
