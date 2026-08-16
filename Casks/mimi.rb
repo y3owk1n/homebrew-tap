@@ -1,10 +1,10 @@
 cask "mimi" do
   arch arm: "arm64", intel: "amd64"
 
-  version "0.10.0"
+  version "0.10.1"
 
-  sha256 arm:   "3dc0f740cc38a5bf7966435bb3da174274eb2db89ad654c8fbc9cc164e61e234",
-         intel: "08d2234a37ca52ce732fce3d4b95cf59be2a623e702dc3420c17799c1b2c1136"
+  sha256 arm:   "9c5a74ac07c65d4bd0cffb150ca751dd212f7e6662c13d28d8cc11d14fde012f",
+         intel: "bf6c661a09cc7e39206ac525cbc457af6da358db1ae95b677961dec923888ca8"
 
   url "https://github.com/y3owk1n/mimi/releases/download/v#{version}/mimi-darwin-#{arch}.zip",
       verified: "github.com/y3owk1n/mimi/"
