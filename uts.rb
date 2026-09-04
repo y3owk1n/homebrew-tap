@@ -1,18 +1,18 @@
 class Uts < Formula
 	desc "uts - single cli for compress and archive medio"
 	homepage "https://github.com/y3owk1n/uts"  # Replace with your actual URL
-  version "0.2.2"
+  version "0.2.3"
 
 	# For macOS Intel (x86_64)
 	if OS.mac? && Hardware::CPU.intel?
     url "https://github.com/y3owk1n/uts/releases/download/v#{version}/uts-darwin-amd64.zip"
-		sha256 "89a84252abf277746fd6f760dab2ac28ac396d2acb8cab48245935447c1ebe02"
+		sha256 "77df53d8e95ebd48609b31112bbc9712e9828566fd6811a4e43e02c4afae9247"
 	end
 
 	# For macOS Apple Silicon (arm64)
 	if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/y3owk1n/uts/releases/download/v#{version}/uts-darwin-arm64.zip"
-		sha256 "ad820d90e7e0921c941634cc477b4892d306f179b2a455c8767da239f787aab9"
+		sha256 "561ed7e90df847449ac78086fb12c31df30fa2b3cfeb1f4a09678bd71ce6101a"
 	end
 
 	def install
