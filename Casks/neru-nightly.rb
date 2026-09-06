@@ -4,9 +4,7 @@ cask "neru-nightly" do
   version :latest
   sha256 :no_check
 
-  url "https://github.com/y3owk1n/neru/releases/download/nightly/neru-darwin-#{arch}.zip",
-      verified: "github.com/y3owk1n/neru/"
-
+  url "https://github.com/y3owk1n/neru/releases/download/nightly/neru-darwin-#{arch}.zip"
   name "Neru Nightly"
   desc "Keyboard driven navigation for macOS (nightly build)"
   homepage "https://github.com/y3owk1n/neru"
@@ -18,46 +16,40 @@ cask "neru-nightly" do
     end
   end
 
-  depends_on macos: :sonoma # macos 14
-
   conflicts_with cask: "neru"
-
-  preflight do
-    system "xattr", "-rd", "com.apple.quarantine", "#{staged_path}/Neru.app"
-  end
+  depends_on macos: :sonoma # macos 14
 
   app "Neru.app"
   binary "#{appdir}/Neru.app/Contents/MacOS/neru"
-
   generate_completions_from_executable(
     "#{appdir}/Neru.app/Contents/MacOS/neru",
-    shells: [:bash, :zsh, :fish],
+    shells:                 [:bash, :zsh, :fish],
     shell_parameter_format: :cobra,
   )
 
-  postflight do
-    system "xattr", "-rd", "com.apple.quarantine", "#{appdir}/Neru.app"
-    system "mkdir", "-p", "/opt/homebrew/share/man/man1"
-    Dir["#{staged_path}/share/man/man1/*.1"].each do |man|
-      system "ln", "-sf", man, "/opt/homebrew/share/man/man1/#{File.basename(man)}"
-    end
+  preflight_steps do
+    run "/usr/bin/xattr", args:         ["-rd", "com.apple.quarantine", "{{staged_path}}/Neru.app"],
+                          must_succeed: false
   end
 
-  uninstall_postflight do
-    Dir["/opt/homebrew/share/man/man1/neru*.1"].each do |man|
-      system "rm", "-f", man
-    end
+  postflight_steps do
+    run "/usr/bin/xattr", args:         ["-rd", "com.apple.quarantine", "{{appdir}}/Neru.app"],
+                          must_succeed: false
+    mkdir_p "share/man/man1", base: :homebrew_prefix
+    symlink "share/man/man1/*.1", "share/man/man1",
+            source_base: :staged_path, target_base: :homebrew_prefix,
+            source_glob: true, overwrite: true, remove_on_uninstall: true
   end
 
   uninstall launchctl: "com.y3owk1n.neru",
-            quit:       "com.y3owk1n.neru"
+            quit:      "com.y3owk1n.neru"
 
   zap trash: [
+    "/tmp/neru.err.log",
+    "/tmp/neru.log",
     "~/.config/neru",
     "~/Library/Application Support/neru",
     "~/Library/LaunchAgents/com.y3owk1n.neru.plist",
     "~/Library/Logs/neru",
-    "/tmp/neru.log",
-    "/tmp/neru.err.log",
   ]
 end
