@@ -37,7 +37,12 @@ cask "neru" do
     mkdir_p "share/man/man1", base: :homebrew_prefix
     symlink "share/man/man1/*.1", "share/man/man1",
             source_base: :staged_path, target_base: :homebrew_prefix,
-            source_glob: true, overwrite: true, remove_on_uninstall: true
+            source_glob: true, overwrite: true
+  end
+
+  uninstall_postflight_steps do
+    remove "share/man/man1/neru*.1", base:                    :homebrew_prefix,
+                                     symlink_target_contains: "/Caskroom/neru/"
   end
 
   uninstall launchctl: "com.y3owk1n.neru",
