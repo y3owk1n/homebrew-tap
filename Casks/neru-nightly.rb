@@ -6,15 +6,8 @@ cask "neru-nightly" do
 
   url "https://github.com/y3owk1n/neru/releases/download/nightly/neru-darwin-#{arch}.zip"
   name "Neru Nightly"
-  desc "Keyboard driven navigation for macOS (nightly build)"
+  desc "Keyboard driven navigation (nightly build)"
   homepage "https://github.com/y3owk1n/neru"
-
-  livecheck do
-    url "https://api.github.com/repos/y3owk1n/neru/releases/tags/nightly"
-    strategy :json do |json|
-      json["published_at"]  # changes on every overwrite
-    end
-  end
 
   conflicts_with cask: "neru"
   depends_on macos: :sonoma # macos 14

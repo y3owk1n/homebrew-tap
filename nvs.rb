@@ -1,49 +1,46 @@
+# typed: strict
+# frozen_string_literal: true
+
 class Nvs < Formula
-	desc "Neovim version switcher"
-	homepage "https://github.com/y3owk1n/nvs"  # Replace with your actual URL
-	version "1.15.0"
+  desc "Neovim version switcher"
+  homepage "https://github.com/y3owk1n/nvs"
 
-	# For macOS Intel (x86_64)
-	if OS.mac? && Hardware::CPU.intel?
-		url "https://github.com/y3owk1n/nvs/releases/download/v#{version}/nvs-darwin-amd64"
-		sha256 "9f30128f3618381191b963089ae356687efaa7fe616e6cf5775acddafdaef132"
-	end
+  on_macos do
+    on_arm do
+      url "https://github.com/y3owk1n/nvs/releases/download/v1.15.0/nvs-darwin-arm64"
+      sha256 "7740bdd4e47d958d14ab8c77fe273eab2055ad48d40f8b951d57234957661bcf"
+    end
+    on_intel do
+      url "https://github.com/y3owk1n/nvs/releases/download/v1.15.0/nvs-darwin-amd64"
+      sha256 "9f30128f3618381191b963089ae356687efaa7fe616e6cf5775acddafdaef132"
+    end
+  end
 
-	# For macOS Apple Silicon (arm64)
-	if OS.mac? && Hardware::CPU.arm?
-		url "https://github.com/y3owk1n/nvs/releases/download/v#{version}/nvs-darwin-arm64"
-		sha256 "7740bdd4e47d958d14ab8c77fe273eab2055ad48d40f8b951d57234957661bcf"
-	end
+  def install
+    bin.install "nvs-darwin-#{Hardware::CPU.arch}" => "nvs"
+    chmod 0755, bin/"nvs"
+    generate_completions_from_executable(bin/"nvs", "completion")
+  end
 
-	def install
-		# Install the downloaded binary and rename it to "nvs"
-		bin.install "nvs-darwin-#{Hardware::CPU.arch}" => "nvs"
-		chmod 0755, "#{bin}/nvs"
+  def caveats
+    <<~EOS
+      nvs stores its downloaded versions, cache, and configuration in OS-specific directories.
 
-    # Generate and install shell completions
-		generate_completions_from_executable(bin/"nvs", "completion", shells: [:bash, :zsh, :fish])
-	end
+      On macOS by default:
+        Configuration: ~/.config/nvs
+        Cache:         ~/.cache/nvs
+        Global binary symlink: ~/.local/bin
 
-	def caveats
-	<<~EOS
-		nvs stores its downloaded versions, cache, and configuration in OS-specific directories.
+      You can override these defaults with the following environment variables:
+        NVS_CONFIG_DIR  to change the configuration directory.
+        NVS_CACHE_DIR   to change the cache directory.
+        NVS_BIN_DIR     to change the global binary directory.
 
-		On macOS by default:
-		• Configuration: ~/.config/nvs
-		• Cache:         ~/.cache/nvs
-		• Global binary symlink: ~/.local/bin
+      To completely remove nvs and all its data, delete the directories above.
+    EOS
+  end
 
-		You can override these defaults by setting the following environment variables:
-		• NVS_CONFIG_DIR – to change the configuration directory.
-		• NVS_CACHE_DIR  – to change the cache directory.
-		• NVS_BIN_DIR    – to change the global binary directory.
-
-		To completely remove nvs and all its data, please manually delete the relevant directories.
-	EOS
-	end
-
-	test do
-		# A simple test to ensure that nvs returns its current version.
-		system "#{bin}/nvs", "version"
-	end
+  test do
+    assert_match version.to_s, shell_output("#{bin}/nvs --version")
+  end
 end

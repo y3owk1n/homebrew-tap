@@ -7,7 +7,7 @@ cask "mimi" do
 
   url "https://github.com/y3owk1n/mimi/releases/download/v#{version}/mimi-darwin-#{arch}.zip"
   name "Mimi"
-  desc "macOS windows and spaces. From the terminal"
+  desc "Windows and spaces manager, driven from the terminal"
   homepage "https://github.com/y3owk1n/mimi"
 
   livecheck do

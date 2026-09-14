@@ -7,7 +7,7 @@ cask "neru" do
 
   url "https://github.com/y3owk1n/neru/releases/download/v#{version}/neru-darwin-#{arch}.zip"
   name "Neru"
-  desc "Keyboard driven navigation for macOS"
+  desc "Keyboard driven navigation"
   homepage "https://github.com/y3owk1n/neru"
 
   livecheck do
