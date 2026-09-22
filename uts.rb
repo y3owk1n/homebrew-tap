@@ -7,12 +7,12 @@ class Uts < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/y3owk1n/uts/releases/download/v0.3.0/uts-darwin-arm64.zip"
-      sha256 "70056b6ff2405a5a144207a19c328fa4f85db664f66be6b14702e9c72f72db0f"
+      url "https://github.com/y3owk1n/uts/releases/download/v0.4.0/uts-darwin-arm64.zip"
+      sha256 "d412911dd0e18deccdd69c9088506f660bc6317826cacb0844c60cffa3f8f903"
     end
     on_intel do
-      url "https://github.com/y3owk1n/uts/releases/download/v0.3.0/uts-darwin-amd64.zip"
-      sha256 "5edecace729747927cf73eafbd16b569d7ea65918b589653b8fe330b8578309e"
+      url "https://github.com/y3owk1n/uts/releases/download/v0.4.0/uts-darwin-amd64.zip"
+      sha256 "78e66b3fc667e7b599758716477727a8abee21ea2efe62a4cf42c52e482102ec"
     end
   end
 
