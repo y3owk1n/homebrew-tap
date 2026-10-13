@@ -15,6 +15,7 @@ cask "mimi" do
     strategy :github_latest
   end
 
+  conflicts_with cask: "mimi-nightly"
   depends_on macos: :sonoma # macos 14
 
   app "Mimi.app"
